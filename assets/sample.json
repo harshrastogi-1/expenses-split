@@ -1,0 +1,134 @@
+{
+  "Users": {
+    "userId1": {
+      "name": "Harsh",
+      "email": "harsh@example.com",
+      "profilePicture": "https://randomuser.me/api/portraits/men/0.jpg",
+      "friends": [
+        "userId2",
+        "userId3"
+      ],
+      "groups": [
+        "groupId1"
+      ],
+      "balances": {
+        "userId2": -1000,
+        "userId3": 500
+      }
+    },
+    "userId2": {
+      "name": "Shivesh",
+      "email": "shivesh@example.com",
+      "profilePicture": "https://randomuser.me/api/portraits/men/1.jpg",
+      "friends": [
+        "userId1",
+        "userId3"
+      ],
+      "groups": [
+        "groupId1"
+      ],
+      "balances": {
+        "userId1": 1000,
+        "userId3": -300
+      }
+    },
+    "userId3": {
+      "name": "Shubham",
+      "email": "shubham@example.com",
+      "profilePicture": "https://randomuser.me/api/portraits/men/2.jpg",
+      "friends": [
+        "userId1",
+        "userId2"
+      ],
+      "groups": [
+        "groupId1"
+      ],
+      "balances": {
+        "userId1": 500,
+        "userId2": 300
+      }
+    }
+  },
+  "Groups": {
+    "groupId1": {
+      "name": "Trip to Goa",
+      "createdBy": "userId1",
+      "members": {
+        "userId1": {
+          "userName": "Harsh",
+          "shareAmount": 2000
+        },
+        "userId2": {
+          "userName": "Shivesh",
+          "shareAmount": 1200
+        },
+        "userId3": {
+          "userName": "Shubham",
+          "shareAmount": 800
+        }
+      },
+      "expenses": [
+        "expenseId1",
+        "expenseId2"
+      ],
+      "groupBalances": {
+        "userId1": {
+          "userId2": -1200,
+          "userId3": -800
+        },
+        "userId2": {
+          "userId1": 1200,
+          "userId3": 0
+        },
+        "userId3": {
+          "userId1": 800,
+          "userId2": 0
+        }
+      }
+    }
+  },
+  "Expenses": {
+    "expenseId1": {
+      "groupId": "groupId1",
+      "description": "Dinner at XYZ",
+      "amount": 2000,
+      "paidBy": "userId1",
+      "splitAmong": {
+        "userId1": {
+          "amountOwed": 1200
+        },
+        "userId2": {
+          "amountOwed": 800
+        }
+      },
+      "timestamp": 1920300000
+    },
+    "expenseId2": {
+      "groupId": "groupId1",
+      "description": "Taxi fare",
+      "amount": 1200,
+      "paidBy": "userId2",
+      "splitAmong": {
+        "userId1": {
+          "amountOwed": 400
+        },
+        "userId2": {
+          "amountOwed": 400
+        },
+        "userId3": {
+          "amountOwed": 400
+        }
+      },
+      "timestamp": 1706300000
+    }
+  },
+  "Settlements": {
+    "settlementId1": {
+      "fromUserId": "userId2",
+      "toUserId": "userId1",
+      "amount": 1200,
+      "groupId": "groupId1",
+      "timestamp": 1706300000
+    }
+  }
+}
