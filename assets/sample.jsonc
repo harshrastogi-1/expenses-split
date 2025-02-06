@@ -4,116 +4,79 @@
       "name": "Harsh",
       "email": "harsh@example.com",
       "profilePicture": "https://randomuser.me/api/portraits/men/0.jpg",
-      "friends": [
-        "userId2",  // Harsh's friend: Shivesh
-        "userId3"   // Harsh's friend: Shubham
-      ],
-      "groups": [
-        "groupId1"  // Harsh is part of "Trip to Goa" group
-      ],
-      "balances": { // FRINDS PAGE DETAISL TO GET AMMPUNT
-        "userId2": -1000, // Harsh owes Shivesh ₹1000
-        "userId3": 500    // Shubham owes Harsh ₹500
-      }
-    },
-    "userId2": {
-      "name": "Shivesh",
-      "email": "shivesh@example.com",
-      "profilePicture": "https://randomuser.me/api/portraits/men/1.jpg",
-      "friends": [
-        "userId1",  // Shivesh's friend: Harsh
-        "userId3"   // Shivesh's friend: Shubham
-      ],
-      "groups": [
-        "groupId1"
-      ],
-      "balances": {
-        "userId1": 1000,  // Harsh owes Shivesh ₹1000
-        "userId3": -300   // Shivesh owes Shubham ₹300
-      }
-    },
-    "userId3": {
-      "name": "Shubham",
-      "email": "shubham@example.com",
-      "profilePicture": "https://randomuser.me/api/portraits/men/2.jpg",
-      "friends": [
-        "userId1",
-        "userId2"
-      ],
-      "groups": [
-        "groupId1"
-      ],
-      "balances": {
-        "userId1": 500,   // Shubham owes Harsh ₹500
-        "userId2": 300    // Shubham is owed ₹300 by Shivesh
-      }
+      "friends": ["userId2", "userId3"],  // List of user IDs representing friends
+      "groups": ["groupId1"],  // Groups the user is part of
+      "balances": {  // User's balance with each friend (negative = owes, positive = is owed)
+        "userId2": -1000,  // Harsh owes ₹1000 to Shivesh
+        "userId3": 500    // Shubham owes ₹500 to Harsh
+      },
+      "createdAt": 1706300000  // Timestamp for account creation
     }
   },
+  
   "Groups": {
     "groupId1": {
-      "name": "Trip to Goa",  // Name of the group
-      "createdBy": "userId1", // Harsh created this group
-      "totalAmountSpent": 5000,
-      "members": { // HOW MANY MEMBERS & WITH SHARE
+      "name": "Trip to Goa",  // Group name
+      "createdBy": "userId1", // User who created the group
+      "totalAmountSpent": 5000, // Total expenses in the group
+      "members": { // Member details and their financial contributions
         "userId1": {
           "userName": "Harsh",
-          "totalSpend": 2000 , // Harsh's total spend in an group after spliting
-          "totalContribution": 1500 // Harsh Total contribution for a group
+          "totalSpend": 2000,  // Amount Harsh has spent
+          "totalContribution": 1500  // Amount Harsh owes (after splitting)
         },
         "userId2": {
           "userName": "Shivesh",
-          "totalSpend": 1200 , // Shivesh's total contribution
+          "totalSpend": 1200,
           "totalContribution": 1500
         },
         "userId3": {
           "userName": "Shubham",
-          "totalSpend": 800   ,// Shubham's total contribution
+          "totalSpend": 800,
           "totalContribution": 1500
         }
       },
-      "expenses": [
-        "expenseId1"  // Dinner expense
-      ],
-      "groupBalances": {
+      "expenses": ["expenseId1"],  // List of expenses in this group
+      "groupBalances": { // Who owes whom how much within the group
         "userId1": {
           "userId2": -1200,  // Harsh needs to collect ₹1200 from Shivesh
           "userId3": -800    // Harsh needs to collect ₹800 from Shubham
         },
         "userId2": {
-          "userId1": 1200,  // Shivesh owes ₹1200 to Harsh
-          "userId3": 0      // No balance between Shivesh and Shubham
+          "userId1": 1200,
+          "userId3": 0
         },
         "userId3": {
-          "userId1": 800,   // Shubham owes ₹800 to Harsh
-          "userId2": 0      // No balance between Shubham and Shivesh
-        }
-      }
-    }
-  },
-  "Expenses": {
-    "expenseId1": {
-      "groupId": "groupId1",
-      "description": "Dinner at XYZ",  // Expense description
-      "amount": 2000,  // Total bill amount
-      "paidBy": "userId1",  // Harsh paid for dinner
-      "splitAmong": {
-        "userId1": {
-          "amountOwed": 1200  // Harsh's share
-        },
-        "userId2": {
-          "amountOwed": 800  // Shivesh's share
+          "userId1": 800,
+          "userId2": 0
         }
       },
-      "timestamp": 1920300000  // Timestamp when expense was added
+      "createdAt": 1706300000  // Timestamp when the group was created
     }
   },
+  
+  "Expenses": {
+    "expenseId1": {
+      "groupId": "groupId1",  // Associated group ID
+      "description": "Dinner at XYZ",  // Description of the expense
+      "amount": 2000,  // Total expense amount
+      "paidBy": "userId1",  // Who paid for the expense
+      "splitAmong": {  // How the expense is split among members
+        "userId1": {"amountOwed": 1200},  // Harsh's share
+        "userId2": {"amountOwed": 800}  // Shivesh's share
+      },
+      "timestamp": 1920300000  // Timestamp when the expense was recorded
+    }
+  },
+  
   "Settlements": {
     "settlementId1": {
-      "fromUserId": "userId2",  // Shivesh made a payment
-      "toUserId": "userId1",    // Payment was made to Harsh
+      "fromUserId": "userId2",  // Who made the settlement
+      "toUserId": "userId1",  // Who received the settlement
       "amount": 1200,  // Amount settled
-      "groupId": "groupId1",  // Related to "Trip to Goa" group
-      "timestamp": 1706300000  // Timestamp of settlement
+      "groupId": "groupId1",  // Group where settlement happened
+      "method": "UPI", // Payment method used (optional field)
+      "timestamp": 1706300000  // Timestamp when settlement was recorded
     }
   }
 }
