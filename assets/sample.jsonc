@@ -51,6 +51,7 @@
           "userId2": 0
         }
       },
+      "qrCode": "https://example.com/qrcode/groupId1", // QR code for joining the group
       "createdAt": 1706300000  // Timestamp when the group was created
     }
   },
